@@ -1,0 +1,27 @@
+services:
+  level1:
+    build:
+      context: "./Payment Gateway  Level 1"
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+    restart: always
+
+  level2:
+    build:
+      context: "./Payment Gateway  Level 2"
+    ports:
+      - "3002:3000"
+    environment:
+      - PORT=3000
+    restart: always
+
+  level3:
+    build:
+      context: "./Payment Gateway  Level 3"
+    ports:
+      - "3003:3000"
+    environment:
+      - PORT=3000
+    restart: always
