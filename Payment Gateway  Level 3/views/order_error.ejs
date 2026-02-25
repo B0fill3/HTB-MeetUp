@@ -1,0 +1,29 @@
+<section class="card">
+  <span class="badge badge-danger">Pago cancelado</span>
+  <h1 style="margin-top:0.5rem;">El pago no se ha completado</h1>
+
+  <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.5rem;">
+    Tu pedido se ha marcado como <strong>CANCELADO</strong>.
+  </p>
+
+  <div class="summary-card">
+    <div class="summary-card-title">Detalles del pedido</div>
+    <div class="summary-card-body">
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>ID de pedido:</strong> <code><%= order.id %></code>
+      </p>
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>Evento:</strong> <%= event ? event.name : order.eventId %>
+      </p>
+      <p style="margin:0;font-size:0.9rem;">
+        <strong>Nombre:</strong> <%= order.customerName %><br />
+        Si lo deseas, puedes intentarlo de nuevo.
+      </p>
+    </div>
+  </div>
+
+  <a href="/" class="btn btn-primary" style="margin-top:1rem;">
+    Volver a la tienda
+  </a>
+</section>
+

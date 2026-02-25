@@ -1,0 +1,61 @@
+<section class="card">
+  <span class="badge badge-info">Panel formador</span>
+  <h1 style="margin-top:0.5rem;">Listado de pedidos</h1>
+
+  <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.5rem;">
+    Este panel existe solo para ayudar al formador a explicar el laboratorio.
+    Aquí puedes ver el estado de todos los pedidos creados.
+  </p>
+
+  <% if (orders.length === 0) { %>
+    <p style="margin-top:1rem;">Todavía no hay pedidos.</p>
+  <% } else { %>
+    <div style="margin-top:1rem;overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>ID Pedido</th>
+            <th>Nombre</th>
+            <th>Evento</th>
+            <th>Cantidad</th>
+            <th>Total (€)</th>
+            <th>Estado</th>
+            <th>Posición</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.forEach(function(o){ %>
+            <tr>
+              <td><code><%= o.id %></code></td>
+              <td><%= o.customerName || '-' %></td>
+              <td><%= o.event ? o.event.name : o.eventId %></td>
+              <td><%= o.quantity %></td>
+              <td><%= o.amount.toFixed(2) %></td>
+              <td>
+                <% if (o.status === 'paid') { %>
+                  <span class="badge badge-success">PAGADO</span>
+                <% } else if (o.status === 'cancelled') { %>
+                  <span class="badge badge-danger">CANCELADO</span>
+                <% } else { %>
+                  <span class="badge badge-info">PENDIENTE</span>
+                <% } %>
+              </td>
+              <td>
+                <% if (o.rankingPosition) { %>
+                  #<%= o.rankingPosition %>
+                <% } else { %>
+                  -
+                <% } %>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <a href="/" class="btn btn-secondary" style="margin-top:1rem;">
+    Volver a la tienda
+  </a>
+</section>
+

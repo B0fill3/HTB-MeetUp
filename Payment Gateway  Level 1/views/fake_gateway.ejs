@@ -1,0 +1,54 @@
+<section class="card">
+  <span class="badge badge-info">Pasarela de Pago Segura</span>
+  <h1 style="margin-top:0.5rem;">Procesar Pago</h1>
+
+  <p style="color:#94a3b8;font-size:0.9rem;margin-top:0.5rem;">
+    Estás a punto de pagar <strong><%= order.amount.toFixed(2) %> €</strong> por <%= order.quantity %> entradas para <em><%= event.name %></em>.
+  </p>
+
+  <div class="summary-card" style="margin-bottom: 1.5rem;">
+    <div class="summary-card-body">
+      <div class="field">
+        <label for="card">Número de Tarjeta</label>
+        <input type="text" id="card" placeholder="0000 0000 0000 0000" />
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <div class="field" style="flex: 2;">
+          <label for="expiry">Fecha de Caducidad</label>
+          <input type="text" id="expiry" placeholder="MM/YY" />
+        </div>
+        <div class="field" style="flex: 1;">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="000" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 0.5rem;">
+    <button class="btn btn-primary" onclick="processPayment()">Pagar ahora</button>
+    <button class="btn btn-secondary" onclick="history.back()">Volver al comercio</button>
+  </div>
+
+  <script>
+    function processPayment() {
+      const card = document.getElementById('card').value;
+      if (!card) {
+        alert("Error: Por favor, introduce los datos de tu tarjeta.");
+        return;
+      }
+      
+      // Simulación de procesamiento
+      const btn = event.target;
+      const originalText = btn.innerText;
+      btn.innerText = "Procesando...";
+      btn.disabled = true;
+
+      setTimeout(() => {
+        alert("Error 402: Payment Required. La entidad emisora ha rechazado la transacción por fondos insuficientes o tarjeta no autorizada para compras internacionales.");
+        btn.innerText = originalText;
+        btn.disabled = false;
+      }, 1500);
+    }
+  </script>
+</section>

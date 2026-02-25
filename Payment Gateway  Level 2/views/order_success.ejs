@@ -1,0 +1,41 @@
+<section class="card">
+  <span class="badge badge-success">Pago aceptado</span>
+  <h1 style="margin-top:0.5rem;">¡Gracias por tu compra!</h1>
+
+  <p style="color:#6b7280;font-size:0.9rem;margin-top:0.5rem;">
+    Tu pedido se ha marcado como <strong>PAGADO</strong> en el sistema. A
+    continuación puedes ver un resumen:
+  </p>
+
+  <div class="summary-card">
+    <div class="summary-card-title">Resumen del pedido</div>
+    <div class="summary-card-body">
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>ID de pedido:</strong> <code><%= order.id %></code>
+      </p>
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>Evento:</strong> <%= event ? event.name : order.eventId %>
+      </p>
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>Nombre:</strong> <%= order.customerName %>
+      </p>
+      <p style="margin:0 0 0.25rem 0;font-size:0.9rem;">
+        <strong>Cantidad:</strong> <%= order.quantity %> entradas
+      </p>
+      <p style="margin:0;font-size:0.9rem;">
+        <strong>Total:</strong> <%= order.amount.toFixed(2) %> €
+      </p>
+    </div>
+  </div>
+
+  <% if (rankingPosition) { %>
+    <p style="margin-top:1rem;font-size:0.95rem;color:#15803d;font-weight:600;">
+      Enhorabuena, has sido el nº <%= rankingPosition %> en completar el reto.
+    </p>
+  <% } %>
+
+  <a href="/" class="btn btn-primary" style="margin-top:1rem;">
+    Volver a la tienda
+  </a>
+</section>
+

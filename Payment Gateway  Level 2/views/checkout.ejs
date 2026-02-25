@@ -1,0 +1,54 @@
+<section class="card">
+  <span class="badge badge-info">Paso 2 · Checkout</span>
+  <h1 style="margin-top:0.5rem;">Revisa tu pedido</h1>
+
+  <p style="color:#6b7280;font-size:0.9rem;margin-top:0.5rem;">
+    Vas a comprar entradas para:
+  </p>
+
+  <div class="summary-card">
+    <div class="summary-card-title">Resumen del pedido</div>
+    <div class="summary-card-body">
+      <div><strong><%= event.name %></strong></div>
+      <div style="margin-top:0.25rem;">
+        <span>Nombre: <%= order.customerName %></span><br />
+        <span>Cantidad: <%= order.quantity %> entradas</span><br />
+        <span>Precio por entrada: <%= event.price.toFixed(2) %> €</span><br />
+        <span
+          >Total: <strong><%= order.amount.toFixed(2) %> €</strong></span
+        >
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:1rem;font-size:0.9rem;color:#9ca3af;">
+    Al continuar serás redirigido a una pasarela de pago tipo Redsys.
+  </p>
+
+  <form method="post" action="/redsys/pay" style="margin-top:1.25rem;">
+    <input
+      type="hidden"
+      name="Ds_SignatureVersion"
+      value="<%= Ds_SignatureVersion %>"
+    />
+    <input
+      type="hidden"
+      name="Ds_MerchantParameters"
+      value="<%= Ds_MerchantParameters %>"
+    />
+    <input
+      type="hidden"
+      name="Ds_Signature"
+      value="<%= Ds_Signature %>"
+    />
+
+    <button type="submit" class="btn btn-primary">
+      Pagar con Redsys 
+    </button>
+    <a href="/event/<%= event.id %>" class="btn btn-secondary" style="margin-left:0.5rem;">
+      Volver
+    </a>
+  </form>
+
+</section>
+

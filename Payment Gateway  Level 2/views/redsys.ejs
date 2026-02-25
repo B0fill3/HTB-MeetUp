@@ -1,0 +1,46 @@
+<section class="card">
+  <span class="badge badge-info">Paso 3 · Pasarela</span>
+  <h1 style="margin-top:0.5rem;">Pasarela de pago Redsys (emulada)</h1>
+
+  <p style="color:#9ca3af;font-size:0.9rem;margin-top:0.5rem;">
+    Esta página simula la pantalla de pago de Redsys. En un entorno real no
+    tendrías control sobre este servidor.
+  </p>
+
+  <div
+    style="margin-top:1rem;padding:0.9rem 1rem;border-radius:0.75rem;background:rgba(17,24,39,0.9);border:1px solid #1f2937;"
+  >
+    <p style="margin:0;font-size:0.9rem;">
+      Los parámetros recibidos del comercio se encuentran en
+      <code>Ds_MerchantParameters</code> (Base64).
+    </p>
+    <details style="margin-top:0.5rem;">
+      <summary style="cursor:pointer;font-size:0.85rem;color:#9ca3af;">
+        Ver contenido decodificado (solo para el laboratorio)
+      </summary>
+      <pre
+        style="margin-top:0.5rem;font-size:0.78rem;background:#020617;border-radius:0.75rem;padding:0.75rem;overflow:auto;max-height:220px;border:1px solid #111827;"
+      ><code><%= JSON.stringify(decodedParams, null, 2) %></code></pre>
+    </details>
+  </div>
+
+  <p style="margin-top:1rem;font-size:0.9rem;color:#fbbf24;">
+    En este laboratorio, la URL de éxito (<code>Ds_Merchant_UrlOK</code>)
+    contiene toda la lógica de finalización del pedido. Si un atacante consigue
+    esta URL y la visita sin pagar, el pedido se marcará como pagado igualmente.
+  </p>
+
+  <div style="margin-top:1.25rem;">
+    <form method="get" action="<%= decodedParams.Ds_Merchant_UrlOK %>" style="display:inline;">
+      <button type="submit" class="btn btn-primary">
+        Simular pago correcto
+      </button>
+    </form>
+    <form method="get" action="<%= decodedParams.Ds_Merchant_UrlKO %>" style="display:inline;margin-left:0.5rem;">
+      <button type="submit" class="btn btn-secondary">
+        Simular pago cancelado
+      </button>
+    </form>
+  </div>
+</section>
+

@@ -1,0 +1,36 @@
+<section class="card">
+  <h1>Eventos disponibles</h1>
+  <p style="color:#94a3b8;font-size:0.95rem;">
+    Bienvenido a la tienda de entradas del meetup de seguridad. Este entorno es
+    un laboratorio vulnerable para practicar ataques a pasarelas de pago.
+  </p>
+
+  <% if (events.length === 0) { %>
+    <p>No hay eventos disponibles.</p>
+  <% } else { %>
+    <div class="event-grid">
+      <% events.forEach(function(event){ %>
+        <article class="event-card">
+          <img src="<%= event.image %>" alt="<%= event.name %>" class="event-image">
+          <div class="event-content">
+            <div class="event-pill"><%= event.isFree ? 'Comunidad' : 'Próximo evento' %></div>
+            <h2 class="event-title"><%= event.name %></h2>
+            <div class="event-meta">
+              <span><strong>Fecha:</strong> <%= event.date %></span>
+              &nbsp;·&nbsp;
+              <span><strong>Lugar:</strong> <%= event.location %></span>
+            </div>
+            <p style="color:#94a3b8; font-size: 0.9rem; margin-top: 0.5rem;"><%= event.description %></p>
+            <div class="event-footer">
+              <div></div> <!-- Espacio para compensar el precio oculto -->
+              <a href="/event/<%= event.id %>" class="btn btn-primary">
+                Ver detalles
+              </a>
+            </div>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  <% } %>
+</section>
+
